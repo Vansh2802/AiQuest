@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: ai-super-quest
+    runtime: python
+    region: oregon
+    rootDir: .
+    buildCommand: "chmod +x build.sh && ./build.sh"
+    startCommand: "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: MONGODB_URL
+        sync: false
+      - key: DATABASE_NAME
+        value: Ai-Super-quest
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: NODE_VERSION
+        value: "20.11.0"
