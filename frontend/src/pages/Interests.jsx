@@ -43,15 +43,15 @@ export default function Interests() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-retro-darker via-retro-dark to-retro-purple px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-retro-skyBlue via-retro-lightCream to-retro-grassGreen px-4 py-10">
       <motion.div
-        className="retro-panel p-8 w-full max-w-2xl"
+        className="bg-white/90 border-4 border-retro-dark rounded-lg shadow-lg p-8 w-full max-w-2xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="font-pixel text-retro-yellow text-xl text-center mb-2">🎯 CHOOSE YOUR PATH</h2>
-        <p className="font-pixel text-xs text-gray-600 dark:text-gray-400 text-center mb-8">
+        <h2 className="font-pixel text-retro-orangeAccent text-xl text-center mb-2">🎯 CHOOSE YOUR PATH</h2>
+        <p className="font-pixel text-xs text-gray-700 text-center mb-8">
           WHAT DO YOU WANT TO LEARN? (SELECT ONE OR MORE)
         </p>
 
@@ -72,10 +72,10 @@ export default function Interests() {
               <motion.button
                 key={item.id}
                 onClick={() => toggle(item.id)}
-                className={`text-left p-4 border-2 transition-all ${
+                className={`text-left p-4 border-2 rounded-lg transition-all ${
                   isSelected
-                    ? `${item.color} ${item.bg} shadow-[0_0_12px_rgba(255,215,0,0.3)]`
-                    : 'border-gray-400 dark:border-gray-700 bg-white/30 dark:bg-retro-darker/50 hover:border-gray-500'
+                    ? `${item.color} ${item.bg} shadow-lg scale-105`
+                    : 'border-gray-300 bg-white/50 hover:border-retro-orangeAccent'
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -86,10 +86,10 @@ export default function Interests() {
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{item.icon}</span>
                   <div>
-                    <p className="font-pixel text-xs text-gray-900 dark:text-white">{item.id.toUpperCase()}</p>
+                    <p className="font-pixel text-xs text-retro-dark">{item.id.toUpperCase()}</p>
                     {isSelected && (
                       <motion.p
-                        className="font-pixel text-xs text-retro-green mt-1"
+                        className="font-pixel text-xs text-retro-grassGreen mt-1"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                       >
@@ -104,13 +104,13 @@ export default function Interests() {
         </div>
 
         <div className="text-center">
-          <p className="font-pixel text-xs text-gray-600 dark:text-gray-500 mb-4">
+          <p className="font-pixel text-xs text-gray-700 mb-4">
             {selected.length} INTEREST{selected.length !== 1 ? 'S' : ''} SELECTED
           </p>
           <motion.button
             onClick={handleContinue}
-            className="retro-btn bg-retro-yellow text-retro-dark border-yellow-600 text-sm"
-            whileHover={{ scale: 1.05 }}
+            className="retro-btn bg-retro-softYellow text-retro-dark border-retro-orangeAccent text-sm"
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             disabled={loading}
           >

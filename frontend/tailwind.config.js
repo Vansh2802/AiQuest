@@ -9,16 +9,25 @@ export default {
       },
       colors: {
         retro: {
-          dark: '#0a0a2e',
-          darker: '#050520',
-          purple: '#1a1a4e',
-          blue: '#1e3a5f',
-          cyan: '#00e5ff',
-          yellow: '#ffd700',
-          red: '#ff4444',
-          green: '#00ff88',
-          pink: '#ff66aa',
-          orange: '#ff8800',
+          // Bright retro palette
+          skyBlue: '#87CEEB',
+          grassGreen: '#90EE90',
+          softYellow: '#FFE66D',
+          warmSand: '#F4D06F',
+          lightCream: '#FFF8DC',
+          orangeAccent: '#FF8C42',
+          
+          // Complementary colors
+          dark: '#2C3E50',
+          darker: '#1A252F',
+          purple: '#9B7EDE',
+          blue: '#5DADE2',
+          cyan: '#00E5FF',
+          yellow: '#FFD700',
+          red: '#FF6B6B',
+          green: '#4ECB71',
+          pink: '#FF85B3',
+          orange: '#FF8800',
         },
       },
       animation: {

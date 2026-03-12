@@ -36,16 +36,22 @@ export default function Learn() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-retro-darker via-retro-dark to-retro-purple pt-20 px-4 pb-8">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-retro-skyBlue via-retro-lightCream to-retro-grassGreen pt-20 px-4 pb-8">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           className="text-center mb-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="font-pixel text-retro-yellow text-2xl mb-2">📚 LEARNING PATH</h1>
-          <p className="font-pixel text-xs text-gray-600 dark:text-gray-400">
+          <motion.h1 
+            className="font-pixel text-retro-orangeAccent text-2xl mb-2"
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            📚 LEARNING PATH
+          </motion.h1>
+          <p className="font-pixel text-sm text-retro-dark">
             CHOOSE A TOPIC TO START YOUR QUEST
           </p>
         </motion.div>
@@ -54,51 +60,46 @@ export default function Learn() {
         {topics.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {topics.map((t, i) => {
-              const diffClass = DIFFICULTY_COLORS[t.difficulty] || DIFFICULTY_COLORS.Beginner;
               return (
                 <motion.div
-                  key={t.id}
+                  key={t.id || i}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07 }}
+                  transition={{ delay: i * 0.05 }}
                 >
-                  <Link to={`/study?topic=${encodeURIComponent(t.title)}`}>
+                  <Link to={`/study?topic=${encodeURIComponent(t.title || t)}`}>
                     <motion.div
-                      className={`retro-panel p-6 h-full flex flex-col cursor-pointer transition-all ${
-                        t.completed ? 'opacity-60' : ''
-                      }`}
-                      whileHover={{ scale: 1.03, y: -4 }}
+                      className="bg-white/90 border-4 border-retro-dark rounded-lg p-6 h-full flex flex-col cursor-pointer shadow-lg relative overflow-hidden"
+                      whileHover={{ scale: 1.05, y: -6 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {/* Completed badge */}
-                      {t.completed && (
-                        <div className="absolute top-2 right-3">
-                          <span className="font-pixel text-xs text-retro-green">✅ DONE</span>
-                        </div>
-                      )}
+                      {/* Decorative corner */}
+                      <div className="absolute top-0 right-0 w-12 h-12 bg-retro-softYellow border-l-4 border-b-4 border-retro-dark"></div>
 
                       {/* Title */}
-                      <h3 className="font-pixel text-sm text-gray-900 dark:text-white mb-2">{t.title}</h3>
+                      <h3 className="font-pixel text-sm text-retro-dark mb-4 relative z-10">{(t.title || t).toUpperCase()}</h3>
 
-                      {/* Difficulty badge */}
-                      <span
-                        className={`font-pixel text-xs border px-2 py-1 inline-block mb-3 w-fit ${diffClass}`}
-                      >
-                        {t.difficulty.toUpperCase()}
-                      </span>
+                      {/* Description (if available) */}
+                      {t.description && (
+                        <p className="text-xs text-gray-700 mb-3 relative z-10">{t.description}</p>
+                      )}
 
-                      {/* Description */}
-                      <p className="font-pixel text-xs text-gray-600 dark:text-gray-400 leading-5 flex-1 mb-4">
-                        {t.description}
-                      </p>
+                      {/* Difficulty badge (if available) */}
+                      {t.difficulty && (
+                        <span className={`font-pixel text-xs px-2 py-1 border-2 rounded inline-block mb-3 ${DIFFICULTY_COLORS[t.difficulty] || 'text-gray-700 border-gray-400'}`}>
+                          {t.difficulty.toUpperCase()}
+                        </span>
+                      )}
 
-                      {/* Category */}
-                      <p className="font-pixel text-xs text-gray-500 dark:text-gray-600 mb-3">{t.category}</p>
+                      {/* Icon */}
+                      <div className="text-4xl mb-4">
+                        {['🎯', '🚀', '⚡', '🎮', '💡', '🏆', '🎨', '🔥'][i % 8]}
+                      </div>
 
                       {/* CTA */}
                       <div className="mt-auto">
-                        <span className="retro-btn bg-retro-cyan text-retro-dark border-cyan-600 text-xs inline-block">
-                          {t.completed ? '🔄 REVIEW' : '▶ START LEARNING'}
+                        <span className="retro-btn bg-retro-grassGreen text-white border-retro-dark text-xs inline-block">
+                          ▶ START LEARNING
                         </span>
                       </div>
                     </motion.div>
@@ -109,18 +110,20 @@ export default function Learn() {
           </div>
         ) : (
           <motion.div
-            className="retro-panel p-8 text-center"
+            className="bg-white/90 border-4 border-retro-dark rounded-lg p-8 text-center shadow-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <p className="font-pixel text-sm text-gray-600 dark:text-gray-400 mb-4">NO TOPICS AVAILABLE</p>
-            <p className="font-pixel text-xs text-gray-600 dark:text-gray-500 mb-6">
+            <div className="text-6xl mb-4">📚</div>
+            <p className="font-pixel text-sm text-retro-dark mb-4">NO TOPICS AVAILABLE</p>
+            <p className="font-pixel text-xs text-gray-700 mb-6">
               Set your interests first to see personalized topics!
             </p>
             <Link to="/interests">
               <motion.button
-                className="retro-btn bg-retro-yellow text-retro-dark border-yellow-600 text-xs"
-                whileHover={{ scale: 1.05 }}
+                className="retro-btn bg-retro-softYellow text-retro-dark border-retro-orangeAccent text-xs"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 🎯 SET INTERESTS
               </motion.button>
@@ -136,9 +139,12 @@ export default function Learn() {
           transition={{ delay: 0.5 }}
         >
           <Link to="/dashboard">
-            <span className="font-pixel text-xs text-gray-600 dark:text-gray-500 hover:text-retro-cyan transition-colors">
+            <motion.button
+              className="font-pixel text-xs text-retro-dark hover:text-retro-orangeAccent transition-colors"
+              whileHover={{ x: -4 }}
+            >
               ← BACK TO DASHBOARD
-            </span>
+            </motion.button>
           </Link>
         </motion.div>
       </div>

@@ -11,8 +11,8 @@
 
 body {
   font-family: 'Press Start 2P', monospace;
-  background-color: #0a0a2e;
-  color: #ffffff;
+  background: linear-gradient(180deg, #87CEEB 0%, #FFE66D 50%, #90EE90 100%);
+  color: #2C3E50;
   min-height: 100vh;
   overflow-x: hidden;
   font-size: 16px;

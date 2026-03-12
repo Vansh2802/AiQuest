@@ -44,3 +44,18 @@ export function playXP() {
   playTone(1200, 0.06, 'sine', 0.08);
   setTimeout(() => playTone(1400, 0.06, 'sine', 0.08), 60);
 }
+
+// Play login/signup sound from MP3 file
+let loginAudio = null;
+export function playLoginSound() {
+  try {
+    if (!loginAudio) {
+      loginAudio = new Audio('/login-sound.mp3');
+      loginAudio.volume = 0.5;
+    }
+    loginAudio.currentTime = 0;
+    loginAudio.play().catch(err => console.log('Audio play failed:', err));
+  } catch (err) {
+    console.log('Audio load failed:', err);
+  }
+}

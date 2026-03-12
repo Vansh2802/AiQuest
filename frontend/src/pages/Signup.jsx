@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import api from '../api';
+import { playLoginSound } from '../utils/sounds';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -23,6 +24,7 @@ export default function Signup() {
       
       if (res.data.access_token) {
         // Show success message
+        playLoginSound();
         setSuccess(true);
         
         // Store token
@@ -42,15 +44,15 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-retro-darker via-retro-dark to-retro-purple px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-retro-skyBlue via-retro-lightCream to-retro-grassGreen px-4">
       <motion.div
-        className="retro-panel p-8 w-full max-w-md"
+        className="bg-white/90 border-4 border-retro-dark rounded-lg shadow-lg p-8 w-full max-w-md"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="font-pixel text-retro-green text-xl text-center mb-2">🌟 SIGN UP</h2>
-        <p className="font-pixel text-xs text-gray-600 dark:text-gray-400 text-center mb-8">
+        <h2 className="font-pixel text-retro-grassGreen text-xl text-center mb-2">🌟 SIGN UP</h2>
+        <p className="font-pixel text-xs text-gray-700 text-center mb-8">
           CREATE YOUR PLAYER ACCOUNT
         </p>
 
@@ -88,7 +90,7 @@ export default function Signup() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="font-pixel text-xs text-retro-yellow block mb-2">USERNAME</label>
+            <label className="font-pixel text-xs text-retro-dark block mb-2">USERNAME</label>
             <input
               type="text"
               value={username}
@@ -102,7 +104,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label className="font-pixel text-xs text-retro-yellow block mb-2">EMAIL</label>
+            <label className="font-pixel text-xs text-retro-dark block mb-2">EMAIL</label>
             <input
               type="email"
               value={email}
@@ -115,7 +117,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label className="font-pixel text-xs text-retro-yellow block mb-2">PASSWORD</label>
+            <label className="font-pixel text-xs text-retro-dark block mb-2">PASSWORD</label>
             <input
               type="password"
               value={password}
@@ -133,7 +135,7 @@ export default function Signup() {
 
           <motion.button
             type="submit"
-            className={`retro-btn bg-retro-green text-retro-dark border-green-600 w-full ${
+            className={`retro-btn bg-retro-grassGreen text-white border-retro-dark w-full ${
               (loading || success) ? 'opacity-70 cursor-not-allowed' : ''
             }`}
             whileHover={!loading && !success ? { scale: 1.02, y: -2 } : {}}
@@ -158,15 +160,15 @@ export default function Signup() {
           </motion.button>
         </form>
 
-        <p className="font-pixel text-xs text-gray-600 dark:text-gray-400 text-center mt-6">
+        <p className="font-pixel text-xs text-gray-700 text-center mt-6">
           ALREADY A PLAYER?{' '}
-          <Link to="/login" className="text-retro-cyan hover:text-retro-green transition-colors">
+          <Link to="/login" className="text-retro-orangeAccent hover:text-retro-grassGreen transition-colors">
             LOGIN
           </Link>
         </p>
 
         <div className="text-center mt-4">
-          <Link to="/" className="font-pixel text-xs text-gray-600 dark:text-gray-500 hover:text-retro-cyan transition-colors">
+          <Link to="/" className="font-pixel text-xs text-gray-700 hover:text-retro-orangeAccent transition-colors">
             ← BACK TO START
           </Link>
         </div>
