@@ -1,0 +1,30 @@
+# Railway Ignore File
+# Files and directories to exclude from Railway deployment
+
+# Frontend files (not needed in backend deployment)
+frontend/
+node_modules/
+
+# Development files
+*.log
+.env.local
+.env.development
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation (optional, can include if you want)
+# README.md
+# DEPLOYMENT.md
+# SECURITY.md
+
+# Test files
+tests/
+*.test.py
