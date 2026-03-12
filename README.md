@@ -109,6 +109,82 @@ npm run dev
 
 The frontend runs at `http://localhost:3000` with API proxy to `http://localhost:8003`.
 
+---
+
+## 🔒 Security & Environment Variables
+
+### ⚠️ CRITICAL SECURITY NOTICE
+
+**NEVER commit secrets to version control!**
+
+This project uses environment variables to protect sensitive information:
+
+- **JWT secrets** for authentication
+- **API keys** for AI services
+- **Database credentials**
+
+### Setting Up Environment Variables
+
+#### Backend `.env` (Required)
+
+1. Copy the example file:
+   ```bash
+   cp backend/.env.example backend/.env
+   ```
+
+2. Generate a secure JWT secret:
+   ```bash
+   python -c "import secrets; print(secrets.token_urlsafe(32))"
+   ```
+
+3. Fill in your `.env`:
+   ```env
+   MONGODB_URL=mongodb://localhost:27017
+   DATABASE_NAME=aiquest
+   JWT_SECRET=<your-generated-secret-here>
+   ANTHROPIC_API_KEY=sk-ant-xxx  # Optional
+   ```
+
+#### Frontend `.env` (Optional)
+
+The frontend should **NEVER** contain secrets. Only public configuration:
+
+```bash
+cp frontend/.env.example frontend/.env
+```
+
+Frontend variables must use `VITE_` prefix and contain only public data.
+
+### Production Deployment Security
+
+When deploying to production:
+
+1. **Set environment variables** in your hosting platform dashboard
+   - Render: Dashboard → Environment → Add Variable
+   - Vercel: Project Settings → Environment Variables
+   - Railway: Variables tab
+
+2. **Never hardcode secrets** in code files
+
+3. **Rotate secrets regularly** (JWT_SECRET, API keys)
+
+4. **Use strong secrets** — minimum 32 characters, randomly generated
+
+5. **Review `.gitignore`** — ensure `.env` files are excluded
+
+### Security Checklist
+
+Before deployment, verify:
+
+- [ ] No secrets in Git history (`git log --all -S "sk-ant"`)
+- [ ] `.env` files are in `.gitignore`
+- [ ] Production uses strong, unique JWT_SECRET
+- [ ] API keys have proper permissions/restrictions
+- [ ] CORS is configured correctly
+- [ ] HTTPS is enabled in production
+
+---
+
 ## 🌐 Deployment (Render)
 
 This project is configured for one-click deployment on [Render](https://render.com):

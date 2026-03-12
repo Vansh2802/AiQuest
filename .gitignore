@@ -7,27 +7,50 @@ __pycache__/
 venv/
 .venv/
 env/
+ENV/
 
-# Environment variables
+# Environment variables - CRITICAL: Never commit these!
 .env
+.env.local
+.env.development
+.env.production
+.env.*.local
 anthropic_key.txt
 apikey.txt
+*.key
+*.pem
+secrets.json
 
 # Node
 node_modules/
 frontend/dist/
+frontend/build/
+.pnpm-store/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
 # OS
 .DS_Store
 Thumbs.db
+*.log
 
 # Build artifacts
 *.egg-info/
 dist/
 build/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
